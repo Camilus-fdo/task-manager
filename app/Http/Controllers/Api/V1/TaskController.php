@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\TaskRequest;
 use App\Services\TaskService;
+use App\Models\Task;
 
 class TaskController extends Controller
 {
@@ -37,12 +38,12 @@ class TaskController extends Controller
      */
     public function store(TaskRequest $request)
     {
-        $data = $this->taskService->createTask($request->validated());
-
+        $data = $request->validated();
+        $task = $this->taskService->createTask($data);
         return response()->json([
             'success' => true,
             'message' => 'Task created successfully',
-            'data' => $data
+            'data' => $task
         ], 201);
     }
 
@@ -63,14 +64,14 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(TaskRequest $request, string $id)
     {
-        $data = $this->taskService->updateTask($id, $request->validated());
-
+        $data = $request->validated();
+        $task = $this->taskService->updateTask($id, $data);
         return response()->json([
             'success' => true,
             'message' => 'Task updated successfully',
-            'data' => $data
+            'data' => $task
         ]);
     }
 

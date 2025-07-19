@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->foreignId('assigned_user_id')->nullable()->constrained('users')->onDelete('set null');
-            $table->tinyInteger('status')->default(0);
+            $table->string('status')->default('pending');
             $table->date('due_date')->nullable();
             $table->timestamps();
         });

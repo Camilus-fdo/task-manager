@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repository;
 
-use App\Interfaces\TaskRepositoryInterface;
+use App\Repository\TaskRepositoryInterface;
 use App\Models\Task;
 
 class TaskRepository implements TaskRepositoryInterface
